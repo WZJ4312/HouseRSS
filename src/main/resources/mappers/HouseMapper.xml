@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.houserss.dao.HouseMapper" >
+  <resultMap id="BaseResultMap" type="com.houserss.pojo.House" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="sellType" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="zone" jdbcType="VARCHAR" javaType="java.lang.String" />
+      
+      <arg column="houseType" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="price" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="orientation" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      
+      <arg column="floor" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="title" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="decorateType" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      
+      <arg column="decoration" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="area" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="address" jdbcType="VARCHAR" javaType="java.lang.String" />
+      
+      <arg column="userId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="imageInfos" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="isHide" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="reason" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="status" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      
+      <arg column="publishDate" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, sellType, zone, houseType, price, orientation, floor, title, decorateType, decoration, area, address, userId, imageInfos, status, isHide, publishDate, reason
+  </sql>
+  <insert id="insert" parameterType="com.houserss.pojo.House" >
+  insert into houserss_house 
+  <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="sellType != null" >
+        sellType,
+      </if>
+      <if test="zone != null" >
+        zone,
+      </if>
+      <if test="houseType != null" >
+        houseType,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="orientation != null" >
+        orientation,
+      </if>
+      <if test="floor != null" >
+        floor,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="decoration != null" >
+        decoration,
+      </if>
+      <if test="area != null" >
+        area,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="userId != null" >
+        userId,
+      </if>
+      <if test="decorateType != null" >
+        decorateType,
+      </if>
+      <if test="imageInfos != null" >
+        imageInfos,
+      </if>
+      <if test="publishDate != null" >
+        publishDate,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="isHide != null" >
+        isHide,
+      </if>
+      <if test="reason != null" >
+        reason
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="sellType != null" >
+        #{sellType},
+      </if>
+      <if test="zone != null" >
+        #{zone},
+      </if>
+      <if test="houseType != null" >
+        #{houseType},
+      </if>
+      <if test="price != null" >
+        #{price},
+      </if>
+      <if test="orientation != null" >
+        #{orientation},
+      </if>
+      <if test="floor != null" >
+        #{floor},
+      </if>
+      <if test="title != null" >
+        #{title},
+      </if>
+      <if test="decoration != null" >
+        #{decoration},
+      </if>
+      <if test="area != null" >
+        #{area},
+      </if>
+      <if test="address != null" >
+        #{address},
+      </if>
+      <if test="userId != null" >
+        #{userId},
+      </if>
+      <if test="decorateType != null" >
+        #{decorateType},
+      </if>
+      <if test="imageInfos != null" >
+        #{imageInfos},
+      </if>
+      <if test="publishDate != null" >
+        #{publishDate},
+      </if>
+       <if test="status != null" >
+        #{status},
+      </if>
+      <if test="isHide != null" >
+        #{isHide},
+      </if>
+      <if test="reason != null" >
+        #{reason}
+      </if>
+      
+    </trim>
+  </insert>
+   <update id="update" parameterType="com.houserss.pojo.House" >
+  update houserss_house 
+  <set>
+    <if test="sellType != null" >
+      sellType =  #{sellType},
+    </if>
+    <if test="zone != null" >
+     zone =  #{zone},
+    </if>
+    <if test="houseType != null" >
+     houseType =  #{houseType},
+    </if>
+      <if test="price != null" >
+       price = #{price},
+      </if>
+      <if test="orientation != null" >
+      orientation =  #{orientation},
+      </if>
+      <if test="floor != null" >
+       floor = #{floor},
+      </if>
+      <if test="title != null" >
+       title = #{title},
+      </if>
+      <if test="decorateType != null" >
+       decorateType = #{decorateType},
+      </if>
+      <if test="decoration != null" >
+       decoration = #{decoration},
+      </if>
+      <if test="area != null" >
+       area = #{area},
+      </if>
+      <if test="address != null" >
+       address = #{address},
+      </if>
+      <if test="userId != null" >
+       userId = #{userId},
+      </if>
+      <if test="imageInfos != null" >
+       imageInfos = #{imageInfos},
+      </if>
+      <if test="publishDate != null" >
+       publishDate = #{publishDate},
+      </if>
+      <if test="status != null" >
+       status = #{status},
+      </if>
+      <if test="isHide != null" >
+       isHide = #{isHide},
+      </if>
+      <if test="reason != null" >
+       reason = #{reason}
+      </if>
+  </set>
+  where id = #{id}
+  </update>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from houserss_house where id = #{id}
+  </delete>
+  
+  <select id="selectByIdAndUserId" resultType="int" parameterType="map">
+    select count(1) from houserss_house where id = #{id} and userId = #{userId}
+  </select>
+  
+  <select id="selectById" resultMap="BaseResultMap" parameterType="Integer">
+    select  
+    <include refid="Base_Column_List" />
+    from houserss_house
+    where id = #{id}
+  </select>
+  <select id="selectHouseListByCondition" parameterType="map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from houserss_house
+    <where>
+        <if test="sellType != null">
+            and sellType = #{sellType}
+        </if>
+        <if test="zone != null">
+            and zone = #{zone}
+        </if>
+        <if test="houseType != null">
+            and houseType = #{houseType}
+        </if>
+        <if test="minPrice != null">
+            and price &gt;= #{minPrice} 
+        </if>
+        <if test="maxPrice != null">
+             and price &lt;= #{maxPrice}
+        </if>
+        <if test="orientation != null">
+            and orientation = #{orientation}
+        </if>
+        <if test="decorateType != null">
+            and decorateType = #{decorateType}
+        </if>
+        <if test="minArea != null ">
+            and area &gt;= #{minArea}
+        </if>
+        <if test="maxArea != null">
+            and area &lt;= #{maxArea}
+        </if>
+        <if test="userId != 0">
+            and userId = #{userId}
+        </if>
+        <if test="address != null">
+            and address like "%" #{address} "%"
+        </if>
+        <if test="status != null">
+            and status = #{status}
+        </if>
+        <if test="isHide != null">
+            and isHide = #{isHide}
+        </if>
+        <if test="orderType == 1">
+           ORDER BY area DESC 
+        </if>
+        <if test="orderType == 2">
+           ORDER BY price
+        </if>
+        <if test="orderType == 3">
+           ORDER BY publishDate DESC 
+        </if>
+        and status != 3
+    </where>
+            limit #{start},#{end}
+  </select>
+  <select id="selectHouseCountByCondition" resultType="int" parameterType="map">
+    select count(1)
+    from houserss_house
+    <where>
+        <if test="sellType != null">
+            and sellType = #{sellType}
+        </if>
+        <if test="zone != null">
+            and zone = #{zone}
+        </if>
+        <if test="houseType != null">
+            and houseType = #{houseType}
+        </if>
+        <if test="minPrice != null">
+            and price &gt;= #{minPrice} 
+        </if>
+        <if test="maxPrice != null">
+             and price &lt;= #{maxPrice}
+        </if>
+        <if test="orientation != null">
+            and orientation = #{orientation}
+        </if>
+        <if test="decorateType != null">
+            and decorateType = #{decorateType}
+        </if>
+        <if test="minArea != null ">
+            and area &gt;= #{minArea}
+        </if>
+        <if test="maxArea != null">
+            and area &lt;= #{maxArea}
+        </if>
+        <if test="userId != 0">
+            and userId = #{userId}
+        </if>
+        <if test="address != null">
+            and address like "%" #{address} "%"
+        </if>
+        <if test="status != null">
+            and status = #{status}
+        </if>
+        <if test="isHide != null">
+            and isHide = #{isHide}
+        </if>
+        and status != 3
+    </where>
+  </select>
+  
+  <select id="selectTitleById" resultType="String" parameterType="int">
+    select title from houserss_house where id = #{houseId}
+  </select>
+  
+  <update id="setHideStatus" parameterType="map">
+    update houserss_house set isHide = #{isHide} where id = #{houseId}
+  </update>
+  
+  <update id="upadateStatus" parameterType="map">
+    update houserss_house set status = #{status} where id = #{houseId}
+  </update>
+  
+  <select id="getHouseListByUserId" parameterType="map" resultMap="BaseResultMap">
+  	select * from houserss_house where userId = #{userId}
+  </select>
+  
+  
+  
+  
+</mapper>

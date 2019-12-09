@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.houserss.dao.DeleteHouseMapper">
+	<resultMap id="BaseResultMap" type="com.houserss.pojo.DeleteHouse">
+		<constructor>
+			<idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+			<arg column="userId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+			<arg column="houseId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+			<arg column="deleteDate" jdbcType="VARCHAR" javaType="java.lang.String" />
+		</constructor>
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, userId, houseId, deleteDate
+	</sql>
+	<insert id="insert" parameterType="com.houserss.pojo.DeleteHouse">
+		insert into houserss_deletehouse (userId,houseId,deleteDate) values
+		(#{userId},#{houseId},#{deleteDate})
+	</insert>
+
+	<select id="getByUserId" parameterType="Integer" resultMap="BaseResultMap">
+		select * from houserss_deletehouse where userId = #{userId}
+
+	</select>
+
+	<select id="get" parameterType="Integer" resultMap="BaseResultMap">
+		select * from houserss_deletehouse where id = #{id}
+	</select>
+
+	<delete id="deleterById" parameterType="Integer" >
+	    delete from houserss_deletehouse where id = #{id}
+	</delete>
+
+</mapper>

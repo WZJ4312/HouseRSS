@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.houserss.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.houserss.pojo.User" >
+    <constructor>
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="username" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="password" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="email" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="phone" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="status" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="roleType" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, username, name, password, email, phone, status, roleType
+  </sql>
+ <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from houserss_user
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from houserss_user
+    where id = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.houserss.pojo.User" >
+    insert into houserss_user
+     (username,name,password, email, phone,status,roleType)
+    values ( #{username},#{name}, #{password},#{email}, #{phone},#{status},#{roleType} )
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.houserss.pojo.User" >
+    update houserss_user
+    <set >
+      <if test="username != null" >
+        username = #{username},
+      </if>
+      <if test="password != null" >
+        password = #{password},
+      </if>
+      <if test="email != null" >
+        email = #{email},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone},
+      </if>
+      <if test="status != null" >
+        status = #{status},
+      </if>
+      <if test="roleType != null" >
+        roleType = #{roleType},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.houserss.pojo.User" >
+    update houserss_user
+    set username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      question = #{question,jdbcType=VARCHAR},
+      answer = #{answer,jdbcType=VARCHAR},
+      role = #{role,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = now()
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  <select id="checkUsername" resultType="int" parameterType="string" >
+    select count(1) from houserss_user
+    where username = #{username}
+  </select>
+
+  <select id="checkEmail" resultType="int" parameterType="string" >
+    select count(1) from houserss_user
+    where email = #{email}
+  </select>
+
+   <select id="selectLogin" resultMap="BaseResultMap" parameterType="map">
+    SELECT
+    <include refid="Base_Column_List" />
+    from houserss_user
+    where username = #{username}
+    and password = #{password}
+    and status = 0;
+  </select>
+
+  <select id="checkPassword" resultType="int" parameterType="map">
+    SELECT
+    count(1)
+    from houserss_user
+    where password = #{password}
+    and id = #{userId}
+  </select>
+
+  <select id="checkEmailByUserId" resultType="int" parameterType="map">
+    select count(1) from houserss_user
+    where email = #{email}
+    and id != #{userId}
+  </select> 
+
+    <update id="bannedUser" parameterType="map" >
+        update houserss_user set status = 1 where id = #{userId} 
+    </update>
+
+   <select id="getAllUser" parameterType="map" resultType="com.houserss.pojo.User">
+        select 
+        id, username, name, email, phone, status
+        from houserss_user 
+        where roleType = 0
+        limit #{start},#{end}
+    </select> 
+    
+    <select id="getCountAllUser" resultType="int">
+         select count(1) from houserss_user where roleType = 0
+    </select>
+
+    <select id="selectUserNameById" resultType="String" parameterType="int">
+          select username from houserss_user where id = #{userId}
+    </select>
+    
+    <select id="selectByUsername" resultType="com.houserss.pojo.User" parameterType="String">
+          select 
+          <include refid="Base_Column_List" />      
+          from houserss_user where username = #{username}
+    </select>
+    
+      <update id="changeUserStatus" parameterType="map" >
+    update houserss_user set status = #{status}
+    where id = #{id}
+  </update>
+
+    
+</mapper>

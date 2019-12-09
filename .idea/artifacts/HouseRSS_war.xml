@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="HouseRSS:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>HouseRSS</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="houserss.war">
+      <element id="artifact" artifact-name="HouseRSS:war exploded" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.houserss.dao.HouseLogMapper" >
+  <resultMap id="BaseResultMap" type="com.houserss.pojo.HouseLog" >
+    <constructor>
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="houseId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="eventId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="logDate" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, houseId, eventId, logDate
+  </sql>
+  <insert id="insert" parameterType="com.houserss.pojo.HouseLog">
+    insert into houserss_houselog (houseId,eventId,logDate) values
+    (#{houseId},#{eventId},#{logDate})
+  </insert>
+    
+</mapper>

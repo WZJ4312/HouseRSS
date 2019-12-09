@@ -1,0 +1,153 @@
+接口文档
+
+注册(http://localhost:8080/HouseRSS/user/register.do)
+uid 		//帐号
+pwd			//密码
+name		//名称
+phone		//电话
+*
+status		//返回状态
+
+---------------------------
+登入(http://localhost:8080/HouseRSS/user/login.do)
+uid			//帐号
+pwd			//密码
+*
+status		//返回状态
+name		//名称
+phone		//电话
+
+---------------------------
+登出（http://localhost:8080/HouseRSS/user/logout.do）
+*
+status      //返回状态
+---------------------------
+当前用户信息（http://localhost:8080/HouseRSS/user/get_user_info.do）
+*
+status      //返回状态
+name        //名称
+phone       //电话
+email       //邮箱
+
+---------------------------
+编辑个人信息（http://localhost:8080/HouseRSS/user/update_information.do）
+uid
+phone       //电话
+email       //邮箱
+*
+status		//返回状态
+user		//用户user
+
+---------------------------
+修改密码（http://localhost:8080/HouseRSS/user/reset_password.do）
+uid 		//帐号
+pwd			//密码
+*
+status		//返回状态
+
+---------------------------
+编辑或发布房源（http://localhost:8080/HouseRSS/house/publish.do）
+house{}		//房源信息，具体内容看尾部注释
+images[]     // 图片集合
+deletes[]     // 删除集合
+*
+status		//返回状态
+
+---------------------------
+查看房源详情（http://localhost:8080/HouseRSS/house/detailHouse.do)
+house{}		//房源信息，具体内容看尾部注释
+images[]     // 图片集合
+*
+status		//返回状态
+
+---------------------------
+删除房源（http://localhost:8080/HouseRSS/house/delete.do）
+houseId		//房源id
+*
+status		//返回状态
+
+---------------------------
+查看房源列表（http://localhost:8080/HouseRSS/house/houseList.do）
+page		//页码
+userId      //用户id
+
+*
+status		//返回状态
+houses[]	//房源列表
+	house{}	//房源信息，具体内容看尾部注释
+
+
+---------------------------
+举报房源（http://localhost:8080/HouseRSS/house/reportHouse.do）
+houseId		//房源id
+*
+status		//返回状态
+
+---------------------------
+举报发布人（http://localhost:8080/HouseRSS/house/reportUser.do）
+uid			//用户id
+*
+status		//返回状态
+
+---------------------------
+管理员查看用户列表
+page		//页码
+*
+status		//返回状态
+users[]
+	user{}
+		uid	  	//用户id
+		name	//名称
+		phone	//电话
+		status	//状态，0：正常，1：被封禁
+
+---------------------------
+管理员查看被举报用户列表
+page		//页码
+*
+status		//返回状态
+users[]
+	user{}
+		uid	  	//用户id
+		name	//名称
+		phone	//电话
+		count	//被举报次数
+
+---------------------------
+管理员查看被举报房源列表
+page		//页码
+*
+status		//返回状态
+houses[]	//房源列表
+	house{}	//房源信息，具体内容看尾部注释
+
+---------------------------
+管理员封禁（解封）用户
+uid			//用户id
+prohibit	//是否封禁，0：解封，1：封禁
+*
+status		//返回状态
+
+---------------------------
+管理员删除被举报房源
+houseId		//房源id
+*
+status		//返回状态
+
+
+
+注解：
+
+house{}	//房源信息
+	houseId		//房源id
+	sellType	//租售类型 0：租房，1：售房
+	zone		//区域id
+	houseType	//户型
+	price		//价格 租房表示月租金，售房表示整个房子价格
+	orientation	//朝向 0-7表示朝 南、西南、西、西北、北、东北、东、东西
+	floor		//楼层
+	decoration	//装修 0毛坯、1普通装修、2精装修、3豪华装修
+	area		//面积
+	address		//地址
+    title		//房源标题
+    houseDesc	//房源描述

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.houserss.dao.ReportInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.houserss.pojo.ReportInfo" >
+    <constructor>
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="reporterId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="reportederId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="type" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="reportDate" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="description" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="status" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="isSuccess" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, reporterId, reportederId,type,reportDate, description,status,isSuccess
+  </sql>
+  <insert id="insert" parameterType="com.houserss.pojo.ReportInfo"  >
+  insert into houserss_reportinfo 
+  <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="reporterId != null" >
+        reporterId,
+      </if>
+      <if test="reportederId != null" >
+        reportederId,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="reportDate != null" >
+        reportDate,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="status != null" >
+        status
+      </if>
+    </trim>
+     <trim prefix="values (" suffix=")" suffixOverrides="," >
+    <if test="reporterId != null" >
+        #{reporterId},
+      </if>
+      <if test="reportederId != null" >
+        #{reportederId},
+      </if>
+      <if test="type != null" >
+        #{type},
+      </if>
+      <if test="reportDate != null" >
+        #{reportDate},
+      </if>
+      <if test="description != null" >
+        #{description},
+      </if>
+      <if test="status != null" >
+        #{status}
+      </if>
+    </trim>
+  </insert>
+    
+ <select id="selectCountBytype" parameterType="map" resultType="int">
+    select 
+    count(1)
+    from houserss_reportinfo where
+    type = #{type} and status = #{status}
+    <if test="userId != 0">
+    	and reportederId = #{userId}
+    </if>
+    <if test="isSuccess != 0">
+    	and isSuccess = #{isSuccess}
+    </if>
+    
+  </select>
+  
+   <select id="selectById" parameterType="int" resultMap="BaseResultMap">
+     select
+     <include refid="Base_Column_List"/>
+     from houserss_reportinfo
+     where id = #{id} 
+  </select>
+  
+  <delete id="deleteById" parameterType="int">
+    delete 
+    from houserss_reportinfo
+    where id = #{id}
+  </delete>
+  
+  <delete id="deleteByPrimaryKey">
+    delete from houserss_reportinfo where id = #{id}
+  </delete>
+  
+  <select id="selectBytype" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from houserss_reportinfo where
+    type = #{type} and status = #{status}
+    <if test="userId != 0">
+    	and reportederId = #{userId}
+    </if>
+    <if test="isSuccess != 0">
+    	and isSuccess = #{isSuccess}
+    </if>
+    limit #{start},#{end}
+  </select> 
+	<update id="updateStatus" parameterType="map" >
+		update houserss_reportinfo set status = #{status} , isSuccess = #{isSuccess} where id = #{id}
+	</update>
+  
+  <select id="getSucessReport" parameterType="map" resultMap="BaseResultMap">
+  	select * from houserss_reportinfo where isSuccess = #{isSuccess} and type = #{type}
+  </select>
+  
+</mapper>
